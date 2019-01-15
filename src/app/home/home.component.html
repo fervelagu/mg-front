@@ -1,0 +1,26 @@
+<!-- NOTES GRID  -->
+<h3>Últimas noticias..</h3>
+<mat-grid-list cols="3" rowHeight="2:1">
+    <mat-grid-tile id="news" *ngFor="let n of notes">
+    <mat-grid-tile-footer> {{n.title}} </mat-grid-tile-footer>
+        <a [routerLink]="['/notes', n._id]"> 
+            <img src="{{n.images[0]}}" alt="img">
+        </a>
+    </mat-grid-tile>
+</mat-grid-list>
+
+
+<div id="separator"></div>
+
+
+<!-- REVIEWS GRID -->
+<h3>Últimas reseñas..</h3>
+<mat-grid-list cols="4" rowHeight="4:6">
+    <mat-grid-tile id="movies" *ngFor="let r of reviews">
+        <mat-grid-tile-header> {{r.movieTitle}} </mat-grid-tile-header>
+        <a [routerLink]="['/reviews', r._id]">
+            <img src="{{r.photoURL}}" alt="img">
+        </a>
+        <!-- <mat-grid-tile-footer> Por: {{r.author.name}} </mat-grid-tile-footer> -->
+    </mat-grid-tile>
+</mat-grid-list>

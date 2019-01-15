@@ -1,0 +1,61 @@
+<div style="height: 100vh;">
+
+    <mat-toolbar color="primary">
+
+        <mat-toolbar-row>
+            <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+                <mat-icon> menu </mat-icon>
+            </button>
+            <a href="/"><h1 id="title" >MAGACINE APP&nbsp; <i class="fas fa-film"></i></h1></a>
+            <span class="example-spacer"></span>
+            <!-- <img id="logo" src="../assets/icon.png" alt="mg-icon"> -->
+            <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+            <mat-form-field id="search" fxShow="true" fxHide.lt-md="true">
+                <mat-icon>search</mat-icon><input matInput type="text" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Buscar..."/>
+            </mat-form-field>
+
+            <div *ngIf="isLogged" fxShow="true" fxHide.lt-md="true"> 
+                <a mat-button [routerLink]="['/dashboard']">
+                    <mat-icon> account_box </mat-icon>
+                    Mi Cuenta
+                </a>
+                <button mat-button (click)='logout()'> Salir </button>
+            </div>
+
+            <!-- If there's no user  -->
+            <div fxShow="true" fxHide.lt-md="true" *ngIf="!isLogged">
+                <a mat-button [routerLink]="['/login']"> 
+                    <mat-icon> account_box </mat-icon>
+                    Entrar
+                </a>
+            </div>    
+        </mat-toolbar-row>
+
+    </mat-toolbar>
+    
+    <mat-sidenav-container fxFlexFill>
+        <mat-sidenav #sidenav>
+
+        <!-- If there's user  -->
+        <mat-nav-list *ngIf="isLogged">
+            <a mat-list-item [routerLink]="['/dashboard']"> <!--And if user is Author redirect to dashboard!! -->
+                <mat-icon> account_box </mat-icon>
+                Mi Cuenta
+            </a>
+
+            <button mat-flat-button color="primary" (click)='logout()'> Salir </button>
+        </mat-nav-list>
+
+        <!-- If there's no user  -->
+        <mat-nav-list *ngIf="!isLogged">
+            <a mat-list-item [routerLink]="['/login']"> <!--And if user is Author redirect to dashboard!! -->
+                <mat-icon> account_box </mat-icon>
+                Entrar
+            </a>
+        </mat-nav-list>
+
+        </mat-sidenav>
+        <mat-sidenav-content fxFlexFill> <router-outlet></router-outlet> </mat-sidenav-content>
+    </mat-sidenav-container>
+
+</div>

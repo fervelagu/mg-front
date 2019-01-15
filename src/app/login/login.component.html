@@ -1,0 +1,45 @@
+<!-- SIGN UP FORM -->
+<div class="example-container" *ngIf="!hasAccount">
+  
+  <h3>Regístrate</h3>
+  
+  <mat-form-field>
+    <input matInput type="text" name="name" placeholder="Tu nombre" [(ngModel)]="auth.name">
+  </mat-form-field>
+  
+  <mat-form-field>
+    <input matInput type="email" name="email" placeholder="Correo electrónico :)" [(ngModel)]="auth.email">
+  </mat-form-field>
+
+  <mat-form-field>
+      <input matInput type="password" name="password" placeholder="Una contraseña" [(ngModel)]="auth.password" #myPassword="ngModel" required>
+      <div *ngIf="myPassword.errors && (myPassword.dirty || myPassword.touched)">
+        <p style="color: red" [hidden]="!myPassword.errors.required"> Contraseña prro! </p>
+      </div>      
+  </mat-form-field>
+  
+  <button mat-flat-button color="primary" (click)='signup()'> Listo </button>
+  <a mat-button (click)="hasAccount=!hasAccount"> Ya tengo cuenta </a>
+
+</div>
+
+<!-- LOGIN FORM -->
+<div class="example-container" *ngIf="hasAccount">
+  
+  <h3> Entrar </h3>
+
+  <mat-form-field>
+    <input matInput placeholder="Tu correo :)" [(ngModel)]="auth.email" type="text">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Tu contraseña" [(ngModel)]="auth.password"  type="password">
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" (click)="login()"> Listo </button>
+  <a mat-button (click)="hasAccount=!hasAccount"> No tengo cuenta </a>
+
+</div>
+
+<!-- IF IS ALREADY LOGGED  -->
+<h3 *ngIf="user">Bienvenid@ {{user.email}}</h3>

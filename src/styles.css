@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import "~@angular/material/prebuilt-themes/deeppurple-amber.css"; */
+/* @import "~@angular/material/prebuilt-themes/indigo-pink.css"; */
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+/* @import "~@angular/material/prebuilt-themes/purple-green.css"; */
+@import url('https://fonts.googleapis.com/css?family=Bungee+Shade');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+body,
+html {
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+}
+
+#title {
+    color: white;
+    font-size: 26px;
+    font-family: 'Bungee Shade'
+}
+
+a {
+    text-decoration: none;
+}
+
+#logo {
+    color: white;
+    width: 25px;
+    height: 25px;
+}
+
+#left-panel {
+    display: flex;
+    justify-content: space-between;
+}
+
+#search {
+    padding-left: 10px;
+}

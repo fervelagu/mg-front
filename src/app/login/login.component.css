@@ -1,0 +1,12 @@
+.example-container {
+    text-align: center;
+    padding: 10px;
+    margin: 30px;
+    width: 25%;
+    height: 300px;
+}
+
+button {
+    margin-left: 0px;
+    margin-bottom: 5px;
+}

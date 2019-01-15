@@ -1,0 +1,139 @@
+<!-- DASHBOARD TO AUTHORS -->
+<div *ngIf="user && isAuthor">
+  <div fxLayout="column" fxLayoutGap="20px" fxLayout.gt-md="row" fxLayoutAlign="space-around center" class="content">
+    <div class="blocks">
+      <button button="submit" mat-raised-button color="primary" (click)="newPostReview = true">
+        <mat-icon>add</mat-icon> Nueva reseña
+      </button>
+
+      <button button="submit" mat-raised-button color="primary" (click)="newPostNote = true">
+          <mat-icon>add</mat-icon> Nueva nota
+        </button>
+    </div>
+  </div>
+
+  <div fxLayout="column" fxLayoutAlign="center center" class="content" *ngIf="!newPostNote && !newPostReview">    
+
+    <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+      <h3>Mis Posts</h3>
+    </mat-card-title>
+
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let r of reviews">
+          <button (click)="removeReview()"> <mat-icon matListIcon>delete</mat-icon> </button>
+          <h3 matLine> {{r.movieTitle}} </h3>
+          <p matLine>
+            <span> directed by {{r.director}} </span>
+          </p>
+          <p *ngIf="done">Hecho!</p>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+
+    <!-- <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let n of notes">
+          <button (click)="updateNote()"> <mat-icon matListIcon>edit</mat-icon> </button>
+          <button (click)="removeNote()"> <mat-icon matListIcon>delete</mat-icon> </button>
+          <h3 matLine> {{n.title}} </h3>
+          <p matLine>
+            <span> {{n.title}} </span>
+          </p>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content> -->
+
+  </div>
+
+  <!-- CREATE POST REVIEW -->
+  <div class="newPostForm" *ngIf="newPostReview" fxLayout="column" fxLayoutAlign="center center" class="content">
+    <h3>Nueva reseña</h3>
+    <div mat-dialog-content>
+    
+      <mat-form-field>
+        <input matInput placeholder="Título de la película" type="text" required [(ngModel)]="review.movieTitle">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Director" type="text" required [(ngModel)]="review.director" >
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Año" type="text" required [(ngModel)]="review.year" >
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput placeholder="Escribe algo chingón..." required [(ngModel)]="review.text"></textarea>
+      </mat-form-field>
+
+      <!-- <mat-form-field>
+        <input matInput placeholder="Puntuación" type="text" required [(ngModel)]="review.stars" >
+      </mat-form-field> -->
+
+      <mat-form-field>
+        <mat-select placeholder="Puntuación" [(ngModel)]="review.stars">
+          <mat-option *ngFor="let s of stars" [value]="s.value">
+            {{s.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <p> Stars: {{review.stars}} </p>
+
+      <button mat-flat-button type="submit" color="primary" (click)="saveReview()"> Guardar </button>
+
+      <div mat-dialog-actions>
+        <button mat-flat-button class="close" (click)="newPostReview = false" color="warn"> Cancelar </button>
+      </div>
+
+    </div>
+
+  </div>
+
+<!-- CREATE POST NOTE -->
+  <div class="newPostForm" *ngIf="newPostNote" fxLayout="column" fxLayoutAlign="center center" class="content">
+    <h3>Nueva nota</h3>
+    <div mat-dialog-content>
+        <mat-form-field>
+          <input matInput placeholder="Título" type="text" required [(ngModel)]="note.title">
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea matInput placeholder="Escribe algo chingón..." required [(ngModel)]="note.text"></textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Etiquetas separadas por coma" type="text" required [(ngModel)]="note.tags">
+        </mat-form-field>
+
+        <!-- CAMBIAR EL TIPO DE INPUT PARA AGREGAR ARCHIVOS O URL DE IMAGEN -->
+        <!-- <mat-form-field>
+          <input matInput placeholder="Imágenes" type="text" required [(ngModel)]="note.images">
+        </mat-form-field> -->
+
+        <button mat-flat-button type="submit" color="primary" (click)="saveNote()"> Guardar </button>
+
+        <div mat-dialog-actions>
+          <button mat-flat-button class="close" (click)="newPostNote = false" color="warn"> Cancelar </button>
+        </div>
+    </div>
+  
+  </div>
+
+</div>
+
+<!-- DASHBOARD TO READERS -->
+<div *ngIf="user && !isAuthor">
+
+  <div  fxLayout="row" fxLayoutAlign="center center" class="content">
+    <h3>Mi Perfil</h3>
+
+    <div class="example-container mat-elevation-z8">
+      <h3>Comentarios</h3>
+      <h3>Likes</h3>
+    </div> 
+
+  </div>
+
+</div>
